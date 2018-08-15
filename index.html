@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Vue增删改查</title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+		<div class="container" id="app">
+	        <div>
+	            <input type="text" placeholder="search" @input="search" list="cars" class="search">
+	            <datalist id="cars">
+	                <option v-for="item in searchlist" :value="item"></option>
+	            </datalist>
+	            <input type="button" class="add" @click="add" value="新增">
+	        </div>
+	        <div>
+	            <table>
+	                <tr>
+	                    <th>id</th>
+	                    <th>用户名</th>
+	                    <th>邮箱</th>
+	                    <th>性别</th>
+	                    <th>省份</th>
+	                    <th>爱好</th>
+	                    <th>操作</th>
+	                </tr>
+	                <tr v-cloak v-for="(item, index) of slist">
+	                    <td>{{index+1}}</td>
+	                    <td>{{item.username}}</td>
+	                    <td>{{item.email}}</td>
+	                    <td>{{item.sex}}</td>
+	                    <td>{{item.province}}</td>
+	                    <td>{{item.hobby.join(' | ')}}</td>
+	                    <td><a href="javascript:;" @click="showOverlay(index)">修改</a> | <a href="javascript:;" @click="del(index)">删除</a></td>
+	                </tr>
+	            </table>
+	        </div>
+	        <model :list='selectedlist' :isactive="isActive" v-cloak @change="changeOverlay" @modify="modify"></model>
+	    </div>
+	</body>
+</html>
+<script type="text/javascript" src="js/index.js" ></script>
